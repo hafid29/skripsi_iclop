@@ -1,0 +1,15 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+/* code mirror */
+@import '~codemirror/lib/codemirror.css';
+@import '~codemirror/theme/dracula.css';
+
+/* highlight js */
+@import "~highlight.js/styles/idea.css";
