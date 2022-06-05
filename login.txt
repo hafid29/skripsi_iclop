@@ -1,0 +1,3 @@
+name = hafid
+email = hafidwibisana@gmail.com
+pass = hafid123

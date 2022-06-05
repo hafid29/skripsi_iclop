@@ -1,0 +1,123 @@
+Microsoft Windows [Version 10.0.19042.1348]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\User>cd ../..
+
+C:\>cd xampp\mysql\bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 18
+Server version: 10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use aplas_web
+Database changed
+MariaDB [aplas_web]> select id, name from users where name like 'hafid';
++------+-------+
+| id   | name  |
++------+-------+
+| 1487 | Hafid |
++------+-------+
+1 row in set (0.028 sec)
+
+MariaDB [aplas_web]> update users set roleid = 'student' where id='1487';
+Query OK, 1 row affected (0.008 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [aplas_web]> quit
+Bye
+
+C:\xampp\mysql\bin>cd ..
+
+C:\xampp\mysql>cd mytap
+
+C:\xampp\mysql\mytap>mysql -u root --database tap < test.sql
+tap.plan(1)
+1..1
+tap.pass( 'My test passed, w00t!' )
+ok 1 - My test passed, w00t!
+has_table(database(), '__tcache__', 'I got sometable')
+ok 2 - I got sometable
+col_has_type( database(), '__tcache__', 'id', 'bigint(11)', 'type data harus interger')
+not ok 3 - type data harus interger\n# Failed test 3: "type data harus interger"
+ERROR 1146 (42S02) at line 12: Table 'tap.users' doesn't exist
+
+C:\xampp\mysql\mytap>mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 36
+Server version: 5.5.5-10.4.24-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use tap
+Database changed
+mysql> select * from table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table' at line 1
+mysql> show tables;
++-----------------+
+| Tables_in_tap   |
++-----------------+
+| __tcache__      |
+| __tresults__    |
+| mysql__user     |
+| proc_privileges |
++-----------------+
+4 rows in set (0.00 sec)
+
+mysql> desc __tacache__
+    -> ;
+ERROR 1146 (42S02): Table 'tap.__tacache__' doesn't exist
+mysql> desc table  __tacache__
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'table  __tacache__' at line 1
+mysql> describe  __tacache__;
+ERROR 1146 (42S02): Table 'tap.__tacache__' doesn't exist
+mysql> describe  __tcache__;
++-------+---------+------+-----+---------+----------------+
+| Field | Type    | Null | Key | Default | Extra          |
++-------+---------+------+-----+---------+----------------+
+| id    | int(11) | NO   | PRI | NULL    | auto_increment |
+| cid   | int(11) | NO   |     | NULL    |                |
+| label | text    | NO   |     | NULL    |                |
+| value | int(11) | NO   |     | NULL    |                |
+| note  | text    | NO   |     | NULL    |                |
++-------+---------+------+-----+---------+----------------+
+5 rows in set (0.05 sec)
+
+mysql> quit
+Bye
+
+C:\xampp\mysql\mytap>mysql -u root --database tap < test.sql
+tap.plan(1)
+1..1
+tap.pass( 'My test passed, w00t!' )
+ok 1 - My test passed, w00t!
+has_table(database(), '__tcache__', 'I got sometable')
+ok 2 - I got sometable
+col_has_type( database(), '__tcache__', 'id', 'int(11)', 'type data harus interger')
+ok 3 - type data harus interger
+ERROR 1146 (42S02) at line 12: Table 'tap.users' doesn't exist
+
+C:\xampp\mysql\mytap>mysql -u root --database tap < test.sql
+tap.plan(1)
+1..1
+tap.pass( 'My test passed, w00t!' )
+ok 1 - My test passed, w00t!
+has_table(database(), '__tcache__', 'I got sometable')
+ok 2 - I got sometable
+col_has_type( database(), '__tcache__', 'id', 'int(11)', 'type data harus interger')
+ok 3 - type data harus interger
+msg
+# Looks like you planned 1 tests but ran 3
+
+C:\xampp\mysql\mytap>
